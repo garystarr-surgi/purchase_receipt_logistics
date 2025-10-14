@@ -1,0 +1,13 @@
+{
+    "name": "purchase_receipt_logistics",
+    "id": "purchase_receipt_logistics",
+    "title": "Purchase Receipt Logistics",
+    "description": "Custom logic for Purchase Receipts including loose quantity calculation.",
+    "publisher": "SurgiShop",
+    "version": "0.0.1",
+    "license": "MIT",
+    "app_version": "15.0.0",
+    "email": "gary.starr@surgishop.com",
+    "country": "US",
+    "website": "https://surgishop.com"
+}
