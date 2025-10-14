@@ -1,49 +1,36 @@
-let debounceTimer;
+import frappe
+from frappe.utils import flt
 
-function calculate_quantities(frm, cdt, cdn) {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-        const row = locals[cdt][cdn];
+def calculate_custom_quantities(doc, method):
+    """
+    Hook: validate on Purchase Receipt.
+    Adjusts received_qty and accepted_qty to include custom_loose_quantity.
+    Ensures ERPNext validation: received_qty == accepted_qty + rejected_qty.
+    Also sets total_qty on parent to sum of received_qty.
+    """
 
-        const qty = flt(row.qty || 0);
-        const loose_qty = flt(row.custom_loose_quantity || 0);
-        const rejected_qty = flt(row.rejected_qty || 0);
+    logger = frappe.logger("purchase_receipt_logistics")
+    logger.debug(f"Running custom quantity logic for Purchase Receipt: {doc.name}")
 
-        const received_qty = qty + loose_qty + rejected_qty;
-        const accepted_qty = received_qty - rejected_qty;
+    total_received_qty = 0
 
-        frappe.model.set_value(cdt, cdn, 'received_qty', received_qty);
-        frappe.model.set_value(cdt, cdn, 'accepted_qty', accepted_qty);
+    for item in doc.items:
+        qty = flt(item.qty)
+        loose_qty = flt(getattr(item, "custom_loose_quantity", 0))
+        rejected_qty = flt(item.rejected_qty)
 
-        update_total_qty(frm);
-    }, 200);
-}
+        received_qty = qty + loose_qty + rejected_qty
+        accepted_qty = received_qty - rejected_qty
 
-function update_total_qty(frm) {
-    const total = frm.doc.items.reduce((sum, item) => {
-        return sum + flt(item.received_qty || 0);
-    }, 0);
-    frm.set_value('total_qty', total);
-}
+        item.received_qty = received_qty
+        item.accepted_qty = accepted_qty
 
-frappe.ui.form.on('Purchase Receipt Item', {
-    qty: calculate_quantities,
-    custom_loose_quantity: calculate_quantities,
-    rejected_qty: calculate_quantities,
+        total_received_qty += received_qty
 
-    form_render: function(frm, cdt, cdn) {
-        calculate_quantities(frm, cdt, cdn);
-    },
+        logger.debug(
+            f"Item {item.item_code}: qty={qty}, loose={loose_qty}, rejected={rejected_qty}, "
+            f"received={received_qty}, accepted={accepted_qty}"
+        )
 
-    purchase_receipt_items_add: function(frm, cdt, cdn) {
-        calculate_quantities(frm, cdt, cdn);
-    }
-});
-
-frappe.ui.form.on('Purchase Receipt', {
-    refresh: function(frm) {
-        frm.doc.items.forEach(item => {
-            calculate_quantities(frm, item.doctype, item.name);
-        });
-    }
-});
+    doc.total_qty = total_received_qty
+    logger.debug(f"Set total_qty on Purchase Receipt {doc.name} to {doc.total_qty}")
