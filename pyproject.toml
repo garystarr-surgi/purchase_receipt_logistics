@@ -19,7 +19,7 @@ requires-python = ">=3.10"
 
 # Specify dependencies (add any packages your app needs to run)
 dependencies = [
-      # "frappe>=15.0.0", # Example Frappe dependency
+      "frappe>=15.0.0", # Example Frappe dependency
       "pycups>=2.0.1",
       "requests",
 ]
