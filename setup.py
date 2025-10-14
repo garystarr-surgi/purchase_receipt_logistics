@@ -14,7 +14,7 @@ install_requires = [
 if __name__ == '__main__':
     setup(
         # Use the literal app_name variable here for easy regex parsing by bench
-        name=app_name, 
+        purchase_receipt_logistics, 
         # Directly use the literal version string to avoid parsing issues
         version="0.0.1", 
         description="Custom logistics logic for Purchase Receipts.",
