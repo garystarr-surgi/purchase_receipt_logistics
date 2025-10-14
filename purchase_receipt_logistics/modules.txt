@@ -1,1 +1,1 @@
-purchase_receipt_logistics
+Purchase Receipt Logistics
