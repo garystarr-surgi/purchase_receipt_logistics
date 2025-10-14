@@ -1,5 +1,4 @@
-# --- Application Metadata Required by Frappe ---
-# Defines the official title of the app for display in the module/app list.
+# --- Application Metadata ---
 app_name = "purchase_receipt_logistics"
 app_title = "Purchase Receipt Logistics"
 app_publisher = "SurgiShop"
@@ -7,18 +6,15 @@ app_description = "Custom logic for Purchase Receipts including loose quantity c
 app_email = "gary.starr@surgishop.com"
 app_license = "MIT"
 
-# --- ERPNext Site Installation Hooks ---
-# This hook is critical for the app to appear in the site's app list for installation.
+# --- Desk Pages (optional, if you have a config.desktop module) ---
 get_desk_pages = {
     "module_name": "purchase_receipt_logistics.config.desktop"
 }
 
-# --- Event Handlers (Your Custom Logic) ---
-# Set up event handlers that trigger custom code execution
+# --- Event Hooks ---
 doc_events = {
     "Purchase Receipt": {
-        # This tells Frappe to run the specified Python function
-        # before the document passes its standard system validation.
-        "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_quantities"
+        # This hook ensures your custom quantity logic runs during validation
+        "validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_quantities"
     }
 }
