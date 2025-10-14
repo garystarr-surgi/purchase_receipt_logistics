@@ -1,6 +1,10 @@
 # File: hooks.py
 # Location: purchase_receipt_logistics/purchase_receipt_logistics/hooks.py
 
+# --- Application Metadata Required by Frappe ---
+# Defines the official title of the app for display in the module/app list.
+app_title = "Purchase Receipt Logistics"
+
 # Set up event handlers that trigger custom code execution
 doc_events = {
     "Purchase Receipt": {
