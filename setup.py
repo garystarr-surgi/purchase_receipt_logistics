@@ -1,41 +1,27 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
 
-# Load app metadata from app.json
-import json
-with open('app.json') as f:
-    app_metadata = json.load(f)
+# The bench utility uses a regex search on this file.
+# The 'name' argument in setup() must be easily parsable.
 
-# Define the app variables based on app.json
-app_name = app_metadata['name']
-app_title = app_metadata['title']
-app_description = app_metadata['description']
-app_version = app_metadata['version']
-app_license = app_metadata['license']
+app_name = "purchase_receipt_logistics"
+app_version = "0.0.1" # Must match version in app.json
 
-# List of all Python packages required for the app
-# (Frappe apps typically rely on 'frappe' itself)
 install_requires = [
     # Add any specific Python dependencies here if needed
 ]
 
 if __name__ == '__main__':
     setup(
-        name=app_name,
+        # Use the literal app_name variable here for easy regex parsing by bench
+        name=app_name, 
         version=app_version,
-        description=app_description,
-        author='SurgiShop',  # Use publisher from app.json
-        author_email='gary.starr@surgishop.com', # Use email from app.json
+        description="Custom logistics logic for Purchase Receipts.",
+        author='Your Company Name',
+        author_email='you@example.com',
         packages=find_packages(),
         zip_safe=False,
         include_package_data=True,
         install_requires=install_requires,
-        dependency_links=[],
-        entry_points={
-            'console_scripts': [
-                # Add command line entry points if necessary
-            ]
-        },
-        license=app_license
+        license='MIT'
     )
-
