@@ -1,28 +1,24 @@
-# -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
 
-# The bench utility uses a regex search on this file.
-# The 'name' argument in setup() must be easily parsable.
-
 app_name = "purchase_receipt_logistics"
-# app_version = "0.0.1" # Removed variable definition for clarity in setup()
 
-install_requires = [
-    # Add any specific Python dependencies here if needed
-]
+install_requires = []
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     setup(
-        # Use the literal app_name variable here for easy regex parsing by bench
-        purchase_receipt_logistics, 
-        # Directly use the literal version string to avoid parsing issues
-        version="0.0.1", 
+        name=app_name,            # ✅ use variable
+        version="0.0.1",          # ✅ literal string
         description="Custom logistics logic for Purchase Receipts.",
         author="SurgiShop",
         author_email="gary.starr@surgishop.com",
         packages=find_packages(),
-        zip_safe=False,
         include_package_data=True,
         install_requires=install_requires,
-        license='MIT'
+        zip_safe=False,
+        license="MIT",
+        long_description="Custom Frappe app to enhance Purchase Receipt handling with logistics features.",
+        classifiers=[
+            "Framework :: Frappe",
+            "Programming Language :: Python :: 3"
+        ]
     )
