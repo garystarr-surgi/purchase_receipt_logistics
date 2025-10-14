@@ -3,6 +3,7 @@
 
 # --- Application Metadata Required by Frappe ---
 # Defines the official title of the app for display in the module/app list.
+app_name = "purchase_receipt_logistics"
 app_title = "Purchase Receipt Logistics"
 
 # Set up event handlers that trigger custom code execution
