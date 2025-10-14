@@ -5,7 +5,7 @@ app_title = "Purchase Receipt Logistics"
 app_publisher = "SurgiShop"
 app_description = "Custom logic for Purchase Receipts including loose quantity calculation."
 app_email = "gary.starr@surgishop.com"
-app_license = "MIT
+app_license = "MIT"
 
 # --- ERPNext Site Installation Hooks ---
 # This hook is critical for the app to appear in the site's app list for installation.
