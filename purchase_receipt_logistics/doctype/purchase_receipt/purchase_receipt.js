@@ -33,10 +33,9 @@ frappe.ui.form.on('Purchase Receipt Item', {
     },
 
     
-    items_add: function(frm, cdt, cdn) {
+    purchase_receipt_item_add: function(frm, cdt, cdn) {
         calculate_quantities(frm, cdt, cdn);
-   # purchase_receipt_items_add: function(frm, cdt, cdn) {
-    #    calculate_quantities(frm, cdt, cdn);
+  
     }
 });
 
