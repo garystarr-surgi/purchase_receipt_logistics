@@ -11,7 +11,7 @@ app_license = "MIT"
 # NOTE: The file 'purchase_receipt_logistics/purchase_receipt_logistics/doctype/purchase_receipt/purchase_receipt.js'
 #       is loaded automatically by Frappe, so no entry is needed here.
 # doctype_js = {
-#     "DocType Name": "public/js/purchase_receipt.js"
+#     "DocType Name": "public/js/custom_script.js"
 # }
 
 # --- Other Hooks (Optional but good for structure) ---
