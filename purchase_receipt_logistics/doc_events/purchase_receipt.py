@@ -2,6 +2,7 @@ import frappe
 from frappe.utils import flt
 
 def calculate_custom_quantities(doc, method):
+    frappe.msgprint("Hook is running")
     """
     Hook: before_validate on Purchase Receipt.
     Sets received_qty = qty + custom_loose_quantity + rejected_qty.
