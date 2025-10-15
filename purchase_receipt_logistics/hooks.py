@@ -8,7 +8,7 @@ app_email = "gary.starr@surgishop.com"
 app_license = "MIT"
 
 doctype_js = {
-    "Purchase Receipt": "purchase_receipt_logistics/doctype/js/purchase_receipt.js"
+    "purchase_receipt_logistics/purchase_receipt_logistics/doctype/purchase_receipt/purchase_receipt.js"
 
 # --- Desk Pages (optional, if you have a config.desktop module) ---
 # get_desk_pages = {
