@@ -14,9 +14,9 @@ app_license = "MIT"
 
 # --- Other Hooks (Optional but good for structure) ---
 
-# doc_events = {
-#     "Purchase Receipt": {
-#         # Example of a server-side hook (Python)
-#         # "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_quantities"
-#     }
-# }
+doc_events = {
+    "Purchase Receipt": {
+        "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_quantities"
+    }
+}
+
