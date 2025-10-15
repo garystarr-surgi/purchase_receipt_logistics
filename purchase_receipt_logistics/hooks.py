@@ -1,4 +1,4 @@
-# --- Application Metadata ---
+ore_# --- Application Metadata ---
 app_name = "purchase_receipt_logistics"
 app_title = "Purchase Receipt Logistics"
 app_publisher = "SurgiShop"
@@ -15,6 +15,6 @@ get_desk_pages = {
 doc_events = {
     "Purchase Receipt": {
         # This hook ensures your custom quantity logic runs during validation
-        "validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_quantities"
+        "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_quantities"
     }
 }
