@@ -15,12 +15,9 @@ def calculate_custom_quantities(doc, method):
         loose_qty = flt(getattr(item, "custom_loose_quantity", 0))
         rejected_qty = flt(item.rejected_qty)
 
-        received_qty = qty + loose_qty + rejected_qty
-        accepted_qty = received_qty - rejected_qty
+        item.received_qty = qty + loose_qty + rejected_qty
+        item.accepted_qty = item.received_qty - rejected_qty
 
-        item.received_qty = received_qty
-        item.accepted_qty = accepted_qty
-
-        total_qty += received_qty
+        total_qty += item.received_qty  # ✅ Use updated value here
 
     doc.total_qty = total_qty
