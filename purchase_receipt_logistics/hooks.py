@@ -7,19 +7,18 @@ app_description = "Custom logic for Purchase Receipts including loose quantity c
 app_email = "gary.starr@surgishop.com"
 app_license = "MIT"
 
-doctype_js = {
-    "purchase_receipt_logistics/purchase_receipt_logistics/doctype/purchase_receipt/purchase_receipt.js"
-}
+# --- Client Scripts (Leave Empty to use standard auto-loading) ---
+# NOTE: The file 'purchase_receipt_logistics/purchase_receipt_logistics/doctype/purchase_receipt/purchase_receipt.js'
+#       is loaded automatically by Frappe, so no entry is needed here.
+# doctype_js = {
+#     "DocType Name": "public/js/purchase_receipt.js"
+# }
 
-# --- Desk Pages (optional, if you have a config.desktop module) ---
-# get_desk_pages = {
-   # "module_name": "purchase_receipt_logistics.config.desktop"
-#}
+# --- Other Hooks (Optional but good for structure) ---
 
-# --- Event Hooks ---
 # doc_events = {
-   # "Purchase Receipt": {
-        # This hook ensures your custom quantity logic runs during validation
-      #  "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_quantities"
-   # }
+#     "Purchase Receipt": {
+#         # Example of a server-side hook (Python)
+#         # "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_quantities"
+#     }
 # }
