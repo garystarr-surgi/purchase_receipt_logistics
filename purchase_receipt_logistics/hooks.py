@@ -7,15 +7,18 @@ app_description = "Custom logic for Purchase Receipts including loose quantity c
 app_email = "gary.starr@surgishop.com"
 app_license = "MIT"
 
+doctype_js = {
+    "Purchase Receipt": "purchase_receipt_logistics/doctype/js/purchase_receipt.js"
+
 # --- Desk Pages (optional, if you have a config.desktop module) ---
-get_desk_pages = {
-    "module_name": "purchase_receipt_logistics.config.desktop"
-}
+# get_desk_pages = {
+   # "module_name": "purchase_receipt_logistics.config.desktop"
+#}
 
 # --- Event Hooks ---
-doc_events = {
-    "Purchase Receipt": {
+# doc_events = {
+   # "Purchase Receipt": {
         # This hook ensures your custom quantity logic runs during validation
-        "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_quantities"
-    }
-}
+      #  "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_quantities"
+   # }
+# }
