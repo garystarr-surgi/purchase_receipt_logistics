@@ -1,3 +1,4 @@
+console.log('--- My Custom Purchase Receipt Script is Loading! ---'); 
 let debounceTimer;
 
 function calculate_quantities(frm, cdt, cdn) {
