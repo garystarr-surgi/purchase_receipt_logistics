@@ -7,8 +7,6 @@ app_description = "Custom logic for Purchase Receipts including loose quantity c
 app_email = "gary.starr@surgishop.com"
 app_license = "MIT"
 
-fixtures = ["Client Script"]
-
 # --- Desk Pages (optional, if you have a config.desktop module) ---
 get_desk_pages = {
     "module_name": "purchase_receipt_logistics.config.desktop"
