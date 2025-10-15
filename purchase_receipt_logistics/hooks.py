@@ -1,4 +1,5 @@
-ore_# --- Application Metadata ---
+# --- Application Metadata ---
+
 app_name = "purchase_receipt_logistics"
 app_title = "Purchase Receipt Logistics"
 app_publisher = "SurgiShop"
