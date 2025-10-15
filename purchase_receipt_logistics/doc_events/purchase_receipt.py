@@ -3,14 +3,13 @@ from frappe.utils import flt
 
 def calculate_custom_quantities(doc, method):
     """
-    Hook: validate on Purchase Receipt.
-    Adjusts received_qty and accepted_qty to include custom_loose_quantity.
-    Ensures ERPNext validation: received_qty == accepted_qty + rejected_qty.
-    Also sets total_qty on parent to sum of received_qty.
+    Hook: before_validate on Purchase Receipt.
+    Sets received_qty = qty + custom_loose_quantity + rejected_qty.
+    Sets accepted_qty = received_qty - rejected_qty.
+    Updates total_qty on parent.
     """
 
-    logger = frappe.logger("purchase_receipt_logistics")
-    logger.debug(f"Running custom quantity logic for Purchase Receipt: {doc.name}")
+    frappe.log_error("Hook triggered", f"Purchase Receipt: {doc.name}")
 
     total_received_qty = 0
 
@@ -27,10 +26,4 @@ def calculate_custom_quantities(doc, method):
 
         total_received_qty += received_qty
 
-        logger.debug(
-            f"Item {item.item_code}: qty={qty}, loose={loose_qty}, rejected={rejected_qty}, "
-            f"received={received_qty}, accepted={accepted_qty}"
-        )
-
     doc.total_qty = total_received_qty
-    logger.debug(f"Set total_qty on Purchase Receipt {doc.name} to {doc.total_qty}")
