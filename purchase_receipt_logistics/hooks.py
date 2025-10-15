@@ -9,6 +9,7 @@ app_license = "MIT"
 
 doctype_js = {
     "purchase_receipt_logistics/purchase_receipt_logistics/doctype/purchase_receipt/purchase_receipt.js"
+}
 
 # --- Desk Pages (optional, if you have a config.desktop module) ---
 # get_desk_pages = {
