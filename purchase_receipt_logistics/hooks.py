@@ -7,8 +7,8 @@ app_description = "Custom logic for Purchase Receipts including loose quantity c
 app_email = "gary.starr@surgishop.com"
 app_license = "MIT"
 
- doctype_js = {
-    "DocType Name": "purchase_receipt_logistics/purchase_receipt_logistics/doctype/purchase_receipt/purchase_receipt.js"
+doctype_js = {
+    "Purchase Receipt": "purchase_receipt_logistics/purchase_receipt_logistics/doctype/purchase_receipt/purchase_receipt.js"
  }
 
 # --- Other Hooks (Optional but good for structure) ---
