@@ -1,7 +1,7 @@
 import frappe
 from erpnext.stock.doctype.purchase_receipt.purchase_receipt import PurchaseReceipt
 
-class CustomPurchaseReceipt(PurchaseReceipt):
+class PurchaseReceipt(PurchaseReceipt):
     def validate_accepted_rejected_qty(self):
         # Run ERPNext's original validation first
         super().validate_accepted_rejected_qty()
