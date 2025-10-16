@@ -30,4 +30,4 @@ doc_events = {
 # }
 
 # --- Monkey Patch Loader ---
-# from purchase_receipt_logistics.patches import patched_validate_accepted_rejected_qty
+from purchase_receipt_logistics.patches import patched_validate_accepted_rejected_qty
