@@ -27,6 +27,14 @@ def calculate_custom_totals(doc, method):
         total_rejected += rejected
         total_received += received
 
+    # ✅ Enforce validation
+        expected_received = qty + loose + rejected
+        if abs(item.received_qty - expected_received) > 0.001:
+            frappe.throw(
+                f"Row {item.idx}: Received Qty must equal Qty + Loose + Rejected Qty. "
+                f"Found {item.received_qty}, expected {expected_received}"
+            )
+
     doc.custom_total_loose_quantity = total_loose
     doc.custom_total_rejected_quantity = total_rejected
     doc.custom_total_received = total_received
