@@ -13,7 +13,7 @@ doc_events = {
         # The 'validate' event runs when the document is saved/submitted.
         # This hook runs the Python function to include 'custom_loose_quantity' 
         # in the check, preventing the ERPNext error.
-        "validate": "purchase_receipt_logistics.api.purchase_receipt_validation.validate_item_quantities"
+        "before_validate": "purchase_receipt_logistics.api.purchase_receipt_validation.validate_item_quantities"
     }
 }
 
