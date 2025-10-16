@@ -16,7 +16,7 @@ app_license = "MIT"
 
 doc_events = {
     "Purchase Receipt": {
-        "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_quantities"
+        "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_totals"
     }
 }
 
