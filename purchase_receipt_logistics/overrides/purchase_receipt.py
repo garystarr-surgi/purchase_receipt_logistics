@@ -4,6 +4,7 @@ from erpnext.stock.doctype.purchase_receipt.purchase_receipt import PurchaseRece
 class PurchaseReceipt(PurchaseReceipt):
     def validate_accepted_rejected_qty(self):
         # Run ERPNext's original validation first
+        print("✅ Custom PurchaseReceipt override is active")
         super().validate_accepted_rejected_qty()
 
         # Then apply your custom logic to include loose quantity
