@@ -8,10 +8,10 @@ app_license = "MIT"
 
 # --- Document Events (Server-Side Hooks) ---
 doc_events = {
-    "Purchase Receipt": {
-        "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_totals"
-    },
-    "Purchase Receipt Item": {
+    # "Purchase Receipt": {
+        # "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_totals"
+    # },
+   "Purchase Receipt Item": {
         "before_validate": "purchase_receipt_logistics.api.purchase_receipt_validation.validate_item_quantities"
     }
 }
