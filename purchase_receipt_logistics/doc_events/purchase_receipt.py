@@ -1,23 +1,32 @@
 import frappe
 from frappe.utils import flt
 
-def calculate_custom_quantities(doc, method):
+def calculate_custom_totals(doc, method):
     """
-    Server-side logic:
-    - received_qty = qty + custom_loose_quantity + rejected_qty
-    - accepted_qty = received_qty - rejected_qty
-    - total_qty = sum of received_qty across all items
+    Totals loose, rejected, and received quantities across all items.
+    Sets:
+    - custom_total_loose_quantity
+    - custom_total_rejected_quantity
+    - custom_total_received
     """
-    total_qty = 0
+    total_loose = 0
+    total_rejected = 0
+    total_received = 0
 
     for item in doc.items:
         qty = flt(item.qty)
-        loose_qty = flt(getattr(item, "custom_loose_quantity", 0))
-        rejected_qty = flt(item.rejected_qty)
+        loose = flt(getattr(item, "custom_loose_quantity", 0))
+        rejected = flt(item.rejected_qty)
 
-        item.received_qty = qty + loose_qty + rejected_qty
-        item.accepted_qty = item.received_qty - rejected_qty
+        received = qty + loose + rejected
 
-        total_qty += item.received_qty  # ✅ Use updated value here
+        item.received_qty = received
+        item.accepted_qty = received - rejected
 
-    doc.total_qty = total_qty
+        total_loose += loose
+        total_rejected += rejected
+        total_received += received
+
+    doc.custom_total_loose_quantity = total_loose
+    doc.custom_total_rejected_quantity = total_rejected
+    doc.custom_total_received = total_received
