@@ -18,5 +18,9 @@ doc_events = {
     "Purchase Receipt": {
         "before_validate": "purchase_receipt_logistics.doc_events.purchase_receipt.calculate_custom_totals"
     }
+
+override_doctype_class = {
+    "Purchase Receipt": "purchase_receipt_logistics.overrides.purchase_receipt.CustomPurchaseReceipt"
+}
 }
 
