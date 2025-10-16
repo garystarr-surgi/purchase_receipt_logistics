@@ -17,3 +17,6 @@ doc_events = {
 override_doctype_class = {
     "Purchase Receipt": "purchase_receipt_logistics.overrides.purchase_receipt.CustomPurchaseReceipt"
 }
+
+# --- Monkey Patch Loader ---
+app_include = ["purchase_receipt_logistics.patches"]
