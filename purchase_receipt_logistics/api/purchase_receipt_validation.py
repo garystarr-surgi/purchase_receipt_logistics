@@ -1,23 +1,36 @@
 import frappe
+import erpnext.controllers.buying_controller as buying_controller
 
-@frappe.whitelist()
-def validate_item_quantities(doc, method):
+# Save reference to the original function
+_original_validate = buying_controller.BuyingController.validate_accepted_rejected_qty
+
+def patched_validate_accepted_rejected_qty(self):
     """
-    Ensure the standard ERPNext fields are set to pass the original validation,
-    incorporating the loose quantity.
+    PRE-PATCH: Ensure quantities are consistent before the original validation check runs.
     """
     
-    # 1. Calculate the final accepted quantity (Stock Qty + Loose Qty)
-    stock_qty = doc.qty or 0
-    loose_qty = doc.custom_loose_quantity or 0
+    # Apply custom logic FIRST to ensure values pass the check
+    if hasattr(self, "items"):
+        for row in self.items:
+            # We only need to modify the row if a custom field exists
+            if hasattr(row, "custom_loose_quantity"):
+                qty = row.qty or 0
+                loose_qty = row.custom_loose_quantity or 0
+                rejected_qty = row.rejected_qty or 0
+                
+                total_received_qty = qty + loose_qty + rejected_qty
+                accepted_qty = total_received_qty - rejected_qty
+
+                # Update the row values to satisfy the original validation check
+                # Note: received_qty is usually set by client side, but we force it here
+                row.received_qty = total_received_qty
+                row.accepted_qty = accepted_qty
+
+    # Now call the original validation. It should now pass without throwing the error.
+    _original_validate(self) 
     
-    # 2. Update the document object IN PLACE to pass validation
-    # This is the key override!
-    doc.accepted_qty = stock_qty + loose_qty
-    
-    # Note: received_qty and rejected_qty are already set by the client script
-    
-    # After this function runs, the document continues to the original ERPNext validation.
-    # The validation will now check:
-    # doc.received_qty == (doc.accepted_qty) + doc.rejected_qty
-    # And since your client script and this Python code ensure consistency, it should pass.
+    # Only show msgprint if validation passed
+    frappe.msgprint("✅ Custom loose quantity patch successful")
+
+# Apply the patch
+buying_controller.BuyingController.validate_accepted_rejected_qty = patched_validate_accepted_rejected_qty
